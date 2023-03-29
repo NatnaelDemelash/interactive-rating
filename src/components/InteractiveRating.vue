@@ -22,6 +22,14 @@ import {ref} from "vue"
             selected: false
         }
     ]) 
+
+    const selectedRating = ref(null);
+
+    function selectRating (index) {
+        ratingNumbers.value.forEach((rating) => (rating.selected =false));
+        ratingNumbers.value[index].selected = true;
+        selectedRating.value = ratingNumbers.value[index];
+    }
 </script>
 
 <template>
@@ -36,7 +44,7 @@ import {ref} from "vue"
                 to help us improve our offering!
             </p>
             <div class="rating-wrap">
-                <div class="rating" v-for="rating in ratingNumbers" :key="rating.rating">
+                <div class="rating" :class="{'selected-rating': rating.selected}" v-for="(rating, index) in ratingNumbers" :key="index" @click="selectRating(index)">
                     {{ rating.rating }}
                 </div>
             </div>
@@ -80,7 +88,7 @@ h1{
 }
 
 p{
-    color: var(--medium-grey);
+    color: var(--light-grey);
     line-height: 1.8;
     max-width: 380px;
     margin-bottom: 1rem;
@@ -95,12 +103,25 @@ p{
 }
 
 .rating{
+    color: var(--light-grey);
     background: var(--dark-medium-grey);
     height: 50px;
     width: 50px;
     border-radius: 50%;
     display: grid;
     place-items: center;
+    cursor: pointer;
+    transition: 200ms ease all;
+}
+
+.selected-rating{
+    background: var(--medium-grey);
+    color: var(--white);
+}
+
+.rating:hover{
+    background: var(--orange);
+    color: var(--white);
 }
 
 button{
@@ -114,5 +135,11 @@ button{
     cursor: pointer;
     text-transform: uppercase;
     font-weight: 700;
+    transition: 200ms ease all;
+}
+
+button:hover{
+    color: var(--orange);
+    background: var(--white);
 }
 </style>

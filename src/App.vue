@@ -11,7 +11,7 @@ import {RouterView} from "vue-router";
 :root{
   --orange: hsl(25, 97%, 53%);
   --white:hsl(0, 0%, 100%);
-  --ligh-grey: hsl(217, 12%, 63%);
+  --light-grey: hsl(217, 12%, 63%);
   --medium-grey: hsl(216, 12%, 54%);
   --dark-medium-grey: hsl(216, 12%, 22%);
   --dark-blue:hsl(213, 19%, 18%);
